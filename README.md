@@ -1,2 +1,22 @@
-# test
-A simple test repository
+#coding=utf-8
+import smtplib
+from email.mime.text import MIMEText
+#define msg_from,msg_to,set passwad
+msg_from='2129810671@qq.com'
+passwd='vwxhamdikuoidhhf'
+msg_to='395191947@qq.com'
+
+subject='2019144143张草'
+content="WIFI:IP1:10.101.85.87  IP2:180.129.255.57  DATA:IP1:20.78.12.50 IP2:117.136.85.155"
+msg=MIMEText(content)
+msg['Subject']=subject
+msg['From']=msg_from
+msg['To']=msg_to
+try:
+   s=smtplib.SMTP_SSL("smtp.qq.com",465)
+   s.login(msg_from,msg_to,msg.as_string())
+   print("发送成功")
+except(s.SMTPException,e):
+   print("发送失败")
+finally：
+   s.quit()
